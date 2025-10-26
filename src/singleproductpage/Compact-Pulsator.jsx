@@ -85,7 +85,7 @@ function CompactPulsator({ongetindex}){
                        <button className="bg-gray-100 border-[1px] py-1 px-4">+</button>
                     </div>
                  <div>
-                  <button onClick={()=>{ongetindex(1)}} className="bg-black text-white py-1 px-4 ">Add to Cart</button>
+                  <button onClick={()=>{ongetindex(1,"home")}} className="bg-black text-white py-1 px-4 ">Add to Cart</button>
                  </div>
                  </div>
                  <p className="top-2 text-sm lg:text-[16px] lg:mt-5">Category:Home appliances</p>
