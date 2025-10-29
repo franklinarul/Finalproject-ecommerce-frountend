@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-axios
-
+import './home.css'
+import { BsBasket } from "react-icons/bs";
 function AudioVedio({ongetindex}){
      const[audiovedio,setaudiovedio]=useState([]);
      
@@ -19,8 +19,11 @@ function AudioVedio({ongetindex}){
             <div className="grid mt-8 pb-14 grid-cols-2 md:grid-cols-4 gap-5 md:mt-10 gap-y-14 ">
                   {audiovedio.map((items,index)=>{
                      return(
-                        <div key={index} onClick={()=>{ongetindex(index,"audio")}}>
-                            <img src={items.image} alt="" />
+                        <div key={index} >
+                             <div className="relative cartdoggle">
+                            <img  src={items.image} alt="" />
+                            <p onClick={()=>{ongetindex(index,"audio")}} className="absolute top-2 right-2 z-10 hidden p-3 border-[1px] cursor-pointer rounded-full bg-white transform transition-transform"><BsBasket /></p>
+                              </div>
                             <br></br>
                              <i className="">{items.ratings}</i>
                              <p className=" text-[15px] font-semibold font-sans">{items.name}</p>

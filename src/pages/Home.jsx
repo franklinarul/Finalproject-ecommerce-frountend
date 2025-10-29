@@ -27,9 +27,9 @@ function Home({ongetindex}){
         <SalesProduct></SalesProduct>
         <AudioVedio ongetindex={ongetindex}></AudioVedio>
         <HomeAppliances  ongetindex={ongetindex}></HomeAppliances>
-        <AirConditioner></AirConditioner>
-        <KitchenAppliances></KitchenAppliances>
-        <Refrigerator></Refrigerator>
+        <AirConditioner ongetindex={ongetindex}></AirConditioner>
+        <KitchenAppliances ongetindex={ongetindex}></KitchenAppliances>
+        <Refrigerator ongetindex={ongetindex}></Refrigerator>
         <Topbrand></Topbrand>
         <Testimonal></Testimonal>
         <Contactus></Contactus>

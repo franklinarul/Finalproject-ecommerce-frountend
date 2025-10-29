@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-function AirConditioner(){
+import './home.css'
+import { BsBasket } from "react-icons/bs";
+function AirConditioner({ongetindex}){
  
     const[airconditioner,setairconditioner] = useState([])
 
@@ -18,10 +19,13 @@ function AirConditioner(){
                 <button className="text-blue-500 text-xl font-medium">See More</button>
             </div>
             <div className="grid mt-8 pb-14 grid-cols-2 md:grid-cols-4 gap-5 md:mt-10 gap-y-14 ">
-                  {airconditioner.map((items)=>{
+                  {airconditioner.map((items,index)=>{
                      return(
                         <div>
-                            <img src={items.image} alt="" />
+                              <div className="relative cartdoggle">
+                            <img  src={items.image} alt="" />
+                            <p onClick={()=>{ongetindex(index,"aircon")}} className="absolute top-2 right-2 z-10 hidden p-3 border-[1px] cursor-pointer rounded-full bg-white transform transition-transform"><BsBasket /></p>
+                           </div>
                             <br></br>
                              <h1 className="">{items.ratings}</h1>
                              <p className=" text-[15px] font-semibold font-sans">{items.name}</p>

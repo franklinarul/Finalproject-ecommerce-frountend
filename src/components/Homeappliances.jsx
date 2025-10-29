@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BsBasket } from "react-icons/bs";
+import './home.css'
 function HomeAppliances({ongetindex}){
     const[homeappliance,sethomeappliance]=useState([])
 
@@ -19,10 +21,12 @@ function HomeAppliances({ongetindex}){
                   {homeappliance.map((items,index)=>{
                     
                      return(
-                        <div
-                       
-                        key={index} onClick={()=>{ongetindex(index,"home")}}>
-                            <img src={items.image} alt="" />
+                        <div key={index} >
+                           <div className="relative cartdoggle">
+                            <img  src={items.image} alt="" />
+                            <p onClick={()=>{ongetindex(index,"home")}} className="absolute top-2 right-2 z-10 hidden p-3 border-[1px] cursor-pointer rounded-full bg-white transform transition-transform"><BsBasket /></p>
+                           </div>
+                            
                             <br></br>
                              <h1 className="">{items.ratings}</h1>
                              <p className=" text-[15px] font-semibold font-sans">{items.name}</p>

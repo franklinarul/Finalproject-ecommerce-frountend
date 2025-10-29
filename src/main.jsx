@@ -6,7 +6,11 @@ import { Route,Routes,BrowserRouter } from 'react-router-dom'
 import Admin from './adminpages/Admin.jsx'
 createRoot(document.getElementById('root')).render(
 
-  <App></App>
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
 
  
 )

@@ -10,7 +10,7 @@ function SalesProduct(){
                 <button className="pt-3 text-xl font-semibold text-blue-500">Shop now</button>
              </div>
              <div className="w-[22%] lg:w-[50%]">
-                <img src="./src/images/salesproduct-img/electronic-store-wireless-headphone.png" alt="" />
+                <img src="https://res.cloudinary.com/dmfs6il6m/image/upload/v1761724791/electronic-store-wireless-headphone_frkwvd.png" alt="" />
              </div>
          </div>
           <div className="flex justify-between lg:gap-20 bg-gray-200 p-5 h-36 lg:h-72">
@@ -20,7 +20,7 @@ function SalesProduct(){
                 <button className="pt-3 text-xl font-semibold text-blue-500">Shop now</button>
              </div>
              <div className="w-[15%] lg:w-[50%]">
-                <img src="./src/images/salesproduct-img/electronic-store-grooming.png" alt="" />
+                <img src="https://res.cloudinary.com/dmfs6il6m/image/upload/v1761724790/electronic-store-grooming_yjiuit.png" alt="" />
              </div>
          </div>
          <div className="flex justify-between lg:gap-10 bg-yellow-200 p-5 h-36 lg:h-72">
@@ -30,7 +30,7 @@ function SalesProduct(){
                 <button className="pt-3 text-xl font-semibold text-blue-500">Shop now</button>
              </div>
              <div className="w-[20%] lg:w-[50%]">
-                <img src="./src/images/salesproduct-img/electronic-store-video-games.png" alt="" />
+                <img src="https://res.cloudinary.com/dmfs6il6m/image/upload/v1761724791/electronic-store-video-games_r5gttb.png" alt="" />
              </div>
          </div>
     </div>)
