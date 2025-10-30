@@ -16,6 +16,10 @@ import AudioVedioPage from './pages/AudioVedio'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import { useNavigate } from 'react-router-dom'
+import Refigerator from './pages/Refrigerator'
+import Airconditioner from './pages/Airconditioner'
+import KitchenAppliances from './components/Kitchenappliances'
+import Kitchenappliance from './pages/Kitchenappliances'
 function App() {
 
 const [rechomedata,sethome]=useState()
@@ -83,6 +87,9 @@ useEffect(function(){
         <Route path='/' element={<Home ongetindex={ongetindex} ></Home>}></Route>
         <Route path='/homeappliences' element={<HomeAppliancesPage ongetindex={ongetindex} ></HomeAppliancesPage>}></Route>
         <Route path='/Audio&Vedio' element={<AudioVedioPage ongetindex={ongetindex}></AudioVedioPage>}></Route>
+        <Route path='/Refrigirator' element={<Refigerator ongetindex={ongetindex}></Refigerator>}></Route>
+        <Route path='/Airconditioner' element={<Airconditioner ongetindex={ongetindex}></Airconditioner>}></Route>
+        <Route path='/Kitchenappliances' element={<Kitchenappliance ongetindex={ongetindex}></Kitchenappliance>}></Route>
         <Route path='/compact-pulsator' element={<CompactPulsator ongetindex={ongetindex} ></CompactPulsator>}></Route>
       </Routes>
      <Footer></Footer>

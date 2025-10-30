@@ -45,10 +45,7 @@ function HomeAppliancesPage({ongetindex}) {
                         <p>Audio & video</p>
                         <p>Refrigerator</p>
                         <p>Air conditioner</p>
-                        <p>Smart home</p>
-                        <p>PCs & laptop</p>
                         <p>Kitchen appliances</p>
-                        <p>Gadgets</p>
                     </div>
                 </div>
                 </div>

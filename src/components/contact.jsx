@@ -5,7 +5,7 @@ return(
     <div className="pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-4 lg:items-center gap-4">
             <div className="grid justify-center border-b-[1px] lg:order-last">
-                <img src="./src/images/electronic-store-support-team.png" alt="" />
+                <img src="https://res.cloudinary.com/dmfs6il6m/image/upload/v1761810332/electronic-store-support-team_urqz4e.png" alt="" />
             </div>
            <div className="border-b-[1px]  ">
               <p className="underline ">Have any questions?.</p>

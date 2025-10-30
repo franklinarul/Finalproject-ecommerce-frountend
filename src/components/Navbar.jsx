@@ -43,7 +43,7 @@ useEffect(()=>{
     }
 
     async function handlebynow(){
-   const {data} = await  axios.post("http://localhost:5000/payment",{amount:total});
+   const {data} = await  axios.post("https://finalproject-ecommerce-roj1.onrender.com/payment",{amount:total});
    initpayment(data.data)
     };
 
@@ -55,7 +55,7 @@ useEffect(()=>{
             descriptions:"test payment method",
             order_id:data.id,
             handler: async (res)=>{
-                await axios.post("http://localhost:5000/verify",res).then((res)=>{
+                await axios.post("https://finalproject-ecommerce-roj1.onrender.com/verify",res).then((res)=>{
                     console.log(res.data)
                     if(res.data === true){
                         alert("payment verified");
@@ -82,7 +82,7 @@ useEffect(()=>{
             <div className="w-full md:px-40 bg-blue-600 p-5 flex justify-between">
                 <div className="flex gap-6 items-center">
                     <i className="text-3xl sm:flex md:hidden text-white" onClick={clickmenu}><IoMdMenu /></i>
-                   <Link to="/"><i><img src="./src/images/electronic-store-logo.svg" alt="" /></i></Link> 
+                   <Link to="/"><i><img src="https://res.cloudinary.com/dmfs6il6m/image/upload/v1761810311/electronic-store-logo_j7xouw.svg" alt="" /></i></Link> 
                 </div>
                 <div className="flex gap-6">
                     <i onClick={carttoggled} className="text-3xl flex text-white cursor-pointer"><FaOpencart /><sup className="text-xl">{getdata1.length}</sup></i>
@@ -109,12 +109,12 @@ useEffect(()=>{
                    <Link to="/homeappliences"><li>Home appliances</li></Link> 
                    <Link to="/Audio&Vedio "><li>Audio & video
                     </li></Link>
-                    <li>Refrigerator
-                    </li>
-                    <li>New arrivals
-                    </li>
-                    <li>Today’s deal
-                    </li>
+                    <Link to="/Refrigirator"><li>Refrigerator
+                    </li></Link>
+                    <Link to="/Airconditioner"><li>Air Conditioner
+                    </li></Link>
+                    <Link to="/Kitchenappliances"><li>Kitchen Appliances
+                    </li></Link>
                 </div>
             </div>
             {/*                          desktop nav start                */}
@@ -125,12 +125,12 @@ useEffect(()=>{
                    <Link to="/homeappliences"><li>Home appliances</li></Link> 
                    <Link to="/Audio&Vedio "><li>Audio & video
                     </li></Link>
-                    <li>Refrigerator
-                    </li>
-                    <li>New arrivals
-                    </li>
-                    <li>Today’s deal
-                    </li>
+                    <Link to="/Refrigirator"><li>Refrigerator
+                    </li></Link>
+                   <Link to="/Airconditioner"><li>Air Conditioner
+                    </li></Link>
+                    <Link to="Kitchenappliances"><li>Kitchen Appliances
+                    </li></Link>
                 </div>
             </div>
             </div>

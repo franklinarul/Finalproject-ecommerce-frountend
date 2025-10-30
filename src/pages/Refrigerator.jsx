@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function AudioVedioPage({ongetindex}) {
-    const [audio,setaudio]=useState([])
+function Refigerator({ongetindex}) {
+    const [refrigator,setrefirigator]=useState([])
     useEffect(()=>{
-        axios.get("https://finalproject-ecommerce-roj1.onrender.com/recaudiovedio").then((data)=>{
-           setaudio(data.data)
+        axios.get("https://finalproject-ecommerce-roj1.onrender.com/recRefirigirator").then((data)=>{
+           setrefirigator(data.data)
         })
     },[])
     return (
@@ -14,12 +14,12 @@ function AudioVedioPage({ongetindex}) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 px-5 mt-12 mb-20 ">
                 <div className="lg:col-span-2 lg:mx-14">
                     <div>
-                        <h1 className="text-4xl lg:text-5xl font-bold text-blue-500 pb-5">Audio&Vedio</h1>
+                        <h1 className="text-4xl lg:text-5xl font-bold text-blue-500 pb-5">Refrigerator</h1>
                         <p className="text-[16px] pt-3 font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris turpis velit, iaculis vel risus non, convallis rhoncus ligula. Vestibulum ut lorem posuere, malesuada neque et, placerat quam. In hac habitasse platea dictumst. Sed bibendum porttitor sem, at sollicitudin orci placerat nec.</p>
-                        <p className="pt-5 text-gray-400">showing all {audio.length} results</p>
+                        <p className="pt-5 text-gray-400">showing all {refrigator.length} results</p>
                     </div>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-7 mt-5 mb-5 ">
-                        {audio.map((items,index) => {
+                        {refrigator.map((items,index) => {
                             return (
                                <div key={index} >
                                  <Link to={items.to}><img onClick={()=>{ongetindex(index,"audio")}} src={items.image} alt="" /></Link>
@@ -51,4 +51,4 @@ function AudioVedioPage({ongetindex}) {
     )
 }
 
-export default AudioVedioPage
+export default Refigerator
