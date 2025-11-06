@@ -3,21 +3,21 @@ import React from "react";
 function Topbrand(){
     const logolist=[
         {
-        img:"./src/images/brand-logo/electronic-store-top-brand-logo-6.svg"
+        img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822816/electronic-store-top-brand-logo-2_qqducw.svg"
     },{
-         img:"./src/images/brand-logo/electronic-store-top-brand-logo-5.svg"
+         img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822816/electronic-store-top-brand-logo-4_b2q1wg.svg"
     },
     {
-         img:"./src/images/brand-logo/electronic-store-top-brand-logo-4.svg"
+         img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822816/electronic-store-top-brand-logo-4_b2q1wg.svg"
     },
     {
-         img:"./src/images/brand-logo/electronic-store-top-brand-logo-3.svg"
+         img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822816/electronic-store-top-brand-logo-3_pditpq.svg"
     },
     {
-         img:"./src/images/brand-logo/electronic-store-top-brand-logo-2.svg"
+         img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822817/electronic-store-top-brand-logo-5_mkfzce.svg"
     },
     {
-         img:"./src/images/brand-logo/electronic-store-top-brand-logo-1.svg"
+         img:"https://res.cloudinary.com/dmfs6il6m/image/upload/v1761822818/electronic-store-top-brand-logo-1_ev8kdu.svg"
     },
     
 ]

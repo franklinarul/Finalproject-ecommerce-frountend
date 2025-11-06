@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function DescriptionReviews(){
+function DescriptionReviews({imgarray}){
 
     const [desc,setdesc] = useState(false)
     const [revw,setrevw] = useState(true)
@@ -28,13 +28,13 @@ function DescriptionReviews(){
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac massa eget urna tempor vehicula vel id nisi. Pellentesque sed felis auctor, molestie lectus vitae, elementum orci. In et nunc consequat, semper.</p>
                 </div>
                <div className="flex justify-center py-5">
-   <img src="./src/images/SingleProductpage/electronic-store-product-image-12.jpg" alt="" />
+   <img src={imgarray[0]} alt="" />
                </div>
              </div>
              <div>
              <div className="grid lg:grid-cols-2 lg:gap-3 items-center">
                   <div className="flex justify-center ">
-               <img  className="pt-5 " src="./src/images/SingleProductpage/electronic-store-product-gallery-image-21.jpg" alt="" />
+               <img  className="pt-5 " src={imgarray[1]} alt="" />
              </div>
                  <div className="py-3">
                     <h1 className="text-[22px] border-b-2 font-bold border-blue-500">Product's Features</h1>

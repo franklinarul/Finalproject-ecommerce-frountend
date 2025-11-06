@@ -45,7 +45,7 @@ function AdminProduct(){
         onChange("name",value)
        }} value={productlist.name} className="border border-black" type="text" name="" id="" />
         </div>
-    <div>
+       <div>
        <label>productimg</label> <input 
   type="file" 
   className="border border-black"

@@ -7,18 +7,20 @@ import AdminAirconditioner from "./Adminairconditioner";
 import KitchenAppliances from "./Kitchenappliances";
 import Refirigator from "./Refirigator";
 import TodaysDeal from "./TodaysDeals";
+import AdminNavbar from "./AdminNavbar";
+import Adminproductadd from "./Adminproductadd";
+import Adminuserinfo from "./Adminuserinfo";
 function Admin(){
     return(
-        <>
-       <AdminProduct></AdminProduct>
-       <AdminHomeappliances></AdminHomeappliances>
-       <AdminAudioVedio></AdminAudioVedio>
-       <AdminAirconditioner></AdminAirconditioner>
-       <KitchenAppliances></KitchenAppliances>
-       <Refirigator></Refirigator>
-       <TodaysDeal></TodaysDeal>
-        </>
-     
+        
+        
+        
+       
+       <Adminuserinfo></Adminuserinfo>
+       
+       
+        
+        
         
         
     )

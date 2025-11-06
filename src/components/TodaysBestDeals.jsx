@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function TodaysDeal(){
 
@@ -20,7 +21,7 @@ function TodaysDeal(){
                   {todaysdeal.map((items)=>{
                      return(
                         <div>
-                            <img src={items.image} alt="" />
+                           <Link><img src={items.image} alt="" /> </Link>
                             <br></br>
                              <i>{items.ratings}</i>
                              <p className=" text-[14px] font-medium">{items.name}</p>

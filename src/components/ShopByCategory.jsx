@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function ShopByCategory(){
 //     const category=[{
 //         no:"1",
@@ -70,13 +71,13 @@ useEffect(function(){
                   {recdata.map((items,index)=>{
                     return(
                        <div key={index} className="  pt-2">
-                        <div className="flex flex-col ">
+                        <Link to={items.to}> <div className="flex flex-col ">
                           <img  src={items.img} alt="" />
                           <h1 className="font-semibold text-center">{items.h1}</h1>
                          <p className="text-sm font- text-center">{items.P}</p>
                         
                         </div>
-                       
+                       </Link>
                          
                         </div>
                     )

@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import '../components/home.css'
+import { BsBasket } from "react-icons/bs";
 function HomeAppliancesPage({ongetindex}) {
 
     const [homepage,sethomepage]= useState([])
@@ -23,8 +24,11 @@ function HomeAppliancesPage({ongetindex}) {
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-7 mt-5 mb-5 ">
                         {homepage.map((items,index) => {
                             return (
-                               <div onClick={()=>{ongetindex(index,"home")}}>
-                                 <Link to={items.to}><img src={items.image} alt="" /></Link>
+                               <div>
+                                 <div className="relative cartdoggle">
+                                                                  <Link to={items.to}><img src={items.image} alt="" /></Link>
+                                                                 <p onClick={()=>{ongetindex(index,"home")}} className="absolute top-2 right-2 z-10 hidden p-3 border-[1px] cursor-pointer rounded-full bg-white transform transition-transform"><BsBasket /></p>
+                                                                 </div>
                                     <div className="px-5 pt-5">
                                         <h1 className="">{items.ratings}</h1>
                                         <p className=" text-[15px] font-semibold font-sans">{items.name}</p>

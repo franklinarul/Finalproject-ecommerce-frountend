@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import './home.css'
 import { BsBasket } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function KitchenAppliances({ongetindex}){
     const [kitchenproducts,setkitchenproducts] = useState([])
@@ -14,7 +15,7 @@ function KitchenAppliances({ongetindex}){
     console.log(kitchenproducts)
    return(
         <div className="bg-white mt-5 p-5 ">
-            <div className="">
+            <div className="lg:flex justify-between">
                 <h1 className="text-2xl font-semibold">Kitchen appliences</h1>
                 <button className="text-blue-500 text-xl font-medium">See More</button>
             </div>
@@ -23,7 +24,7 @@ function KitchenAppliances({ongetindex}){
                      return(
                         <div>
                               <div className="relative cartdoggle">
-                            <img  src={items.image} alt="" />
+                            <Link to={items.to}>  <img  src={items.image} alt="" /> </Link>
                             <p onClick={()=>{ongetindex(index,"kitchen")}} className="absolute top-2 right-2 z-10 hidden p-3 border-[1px] cursor-pointer rounded-full bg-white transform transition-transform"><BsBasket /></p>
                            </div>
                             <br></br>
