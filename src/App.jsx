@@ -30,6 +30,7 @@ import OledTv from './singleproductpage/Oledtv'
 import Doubledoorefrigirator from './singleproductpage/Doubledoorrefrigirator'
 import Aircon from './singleproductpage/Airconditioner'
 import Owen from './singleproductpage/Microwave'
+import Allproducts from './pages/AllProducts'
 
 
 function Mainlayout({getdata,username}){
@@ -132,6 +133,7 @@ useEffect(function(){
         <Route path='/doubledoorrefrigirator' element={<Doubledoorefrigirator ongetindex={ongetindex}></Doubledoorefrigirator>}></Route>
         <Route path='/aircon' element={<Aircon ongetindex={ongetindex}></Aircon>}></Route>
         <Route path='/owen' element={<Owen ongetindex={ongetindex}></Owen>}></Route>
+        <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
         </Route>
         <Route element={<Adminmainlayout/>}>
         <Route path='/admin' element={<Adminproductadd ></Adminproductadd>}></Route>

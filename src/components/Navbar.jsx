@@ -121,7 +121,7 @@ useEffect(()=>{
 
             <div className="w-full bg-blue-700 p-4 hidden lg:block">
                 <div className="flex text-lg font-semibold text-white justify-center gap-20 list-none   ">
-                    <li>All Products </li>
+                    <Link to="/allproducts"><li>All Products </li></Link>
                    <Link to="/homeappliences"><li>Home appliances</li></Link> 
                    <Link to="/Audio&Vedio "><li>Audio & video
                     </li></Link>

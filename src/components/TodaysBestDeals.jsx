@@ -21,7 +21,7 @@ function TodaysDeal(){
                   {todaysdeal.map((items)=>{
                      return(
                         <div>
-                           <Link><img src={items.image} alt="" /> </Link>
+                           <Link to={items.to}><img src={items.image} alt="" /> </Link>
                             <br></br>
                              <i>{items.ratings}</i>
                              <p className=" text-[14px] font-medium">{items.name}</p>
