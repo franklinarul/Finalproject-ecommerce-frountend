@@ -31,8 +31,8 @@ function AudioVedioPage({ongetindex}) {
                                         <h1 className="">{items.ratings}</h1>
                                         <p className=" text-[15px] font-semibold font-sans">{items.name}</p>
                                         <div className="flex gap-1">
-                                            <p className="line-through text-gray-400 font-medium">{items.oprice}</p>
-                                            <p className="font-semibold">{items.cprice}</p>
+                                            <p className="line-through text-gray-400 font-medium">₹{items.oprice}</p>
+                                            <p className="font-semibold">₹{items.cprice}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -23,7 +23,7 @@ function Home({ongetindex}){
         <Features></Features>
         <ShopByCategory></ShopByCategory>
         <Shopnow></Shopnow>
-        <TodaysDeal></TodaysDeal>
+        <TodaysDeal ongetindex={ongetindex}></TodaysDeal>
         <SalesProduct></SalesProduct>
         <AudioVedio ongetindex={ongetindex}></AudioVedio>
         <HomeAppliances  ongetindex={ongetindex}></HomeAppliances>

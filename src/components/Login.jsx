@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../../firebase_config";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 function Login({setusername,setlogintrue}){
@@ -10,11 +11,13 @@ function Login({setusername,setlogintrue}){
     const [pass,setpass]=useState()
     const navigate = useNavigate()
     function onlogin(){
+    
       signInWithEmailAndPassword(auth,email,pass).then(()=>{
         alert("sussefully logined")
+        setusername(profilename)
         navigate("/")
         setlogintrue(true)
-        setusername(profilename)
+        
       }).catch((err)=>{
         alert(err)
       })

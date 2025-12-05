@@ -31,12 +31,13 @@ import Doubledoorefrigirator from './singleproductpage/Doubledoorrefrigirator'
 import Aircon from './singleproductpage/Airconditioner'
 import Owen from './singleproductpage/Microwave'
 import Allproducts from './pages/AllProducts'
+import PurchaseHistory from './components/Purchasehistory'
+import auth from '../firebase_config'
 
-
-function Mainlayout({getdata,username}){
+function Mainlayout({getdata,username,setcart,setlogintrue,setusername,logintrue,setgetdata,email}){
   return(
     <>
-    <Navbar getdata={getdata} username={username}></Navbar>
+    <Navbar email={email} setgetdata={setgetdata} getdata={getdata} username={username} setcart={setcart} logintrue={logintrue} setlogintrue={setlogintrue} setusername={setusername}></Navbar>
     <Outlet/>
     <Footer></Footer>
     </>
@@ -62,8 +63,11 @@ const [recairconditioner,setrecairconditioner] = useState()
 const [reckitchen,setkitchen] = useState()
 const [recrefirigator,setrefirigator] = useState()
  const[getdata,setgetdata]=useState([])
+ const[todaydeal,settodaysdeal]=useState()
  const[username,setusername] =useState("Profile")
  const[logintrue,setlogintrue] = useState(false)
+ const[cart,setcart]= useState([])
+ const[email,setemail]=useState()
 
  const navigate = useNavigate()
  
@@ -86,6 +90,27 @@ useEffect(function(){
   axios.get("https://finalproject-ecommerce-roj1.onrender.com/recRefirigirator").then(function(data){
   setrefirigator(data.data)
  })
+  axios.get("https://finalproject-ecommerce-roj1.onrender.com/rectodaysdeal").then((data) => {
+         settodaysdeal(data.data)
+      })
+  auth.onAuthStateChanged(function(user){
+    if(user){
+      console.log(user.email)
+      setemail(user.email)
+       axios.post("https://finalproject-ecommerce-roj1.onrender.com/getusername",{email:user.email}).then((data)=>{
+        setusername(data.data.name)
+        setlogintrue(true)
+       })
+
+       axios.post("https://finalproject-ecommerce-roj1.onrender.com/getcartdata",{email:user.email}).then((data)=>{
+        console.log(data.data,"hello from cartdata")
+           setgetdata(data.data)
+       })
+
+    }else{
+      console.log("user logout")
+    }
+  })
   },[])
   console.log(recrefirigator,"from navbar")
   function ongetindex(index,recdata){
@@ -95,14 +120,22 @@ useEffect(function(){
        let setdatalist;
       if(recdata == "home"){
       setdatalist=rechomedata[index];
+      axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
       }else if(recdata == "audio"){
        setdatalist = recaudio[index]
+       axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
       }else if(recdata == "aircon"){
         setdatalist = recairconditioner[index]
+        axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
       }else if(recdata == "kitchen"){
         setdatalist = reckitchen[index]
+        axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
       }else if(recdata == "refrigator"){
         setdatalist = recrefirigator[index]
+        axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
+      }else if(recdata == "allproduct"){
+        setdatalist = todaydeal[index]
+        axios.post("https://finalproject-ecommerce-roj1.onrender.com/addincart",{data:setdatalist,email:email})
       }
 
       setgetdata((prev)=>{
@@ -117,9 +150,9 @@ useEffect(function(){
     <>
      
       <Routes>
-        <Route element={<Mainlayout getdata={getdata} username={username} ></Mainlayout>}>
-         <Route path='/signup' element={<SignUp></SignUp>} ></Route>
-         <Route path='/login' element={<Login setusername={setusername} setlogintrue={setlogintrue}></Login>} ></Route>
+        <Route element={<Mainlayout email={email} setgetdata={setgetdata} getdata={getdata} username={username} logintrue={logintrue} setusername={setusername} setcart={setcart} setlogintrue={setlogintrue}></Mainlayout>}>
+        <Route path='/signup' element={<SignUp></SignUp>} ></Route>
+        <Route path='/login' element={<Login setusername={setusername} setlogintrue={setlogintrue}></Login>} ></Route>
         <Route path='/' element={<Home ongetindex={ongetindex} ></Home>}></Route>
         <Route path='/homeappliences' element={<HomeAppliancesPage ongetindex={ongetindex} ></HomeAppliancesPage>}></Route>
         <Route path='/Audio&Vedio' element={<AudioVedioPage ongetindex={ongetindex}></AudioVedioPage>}></Route>
@@ -134,6 +167,7 @@ useEffect(function(){
         <Route path='/aircon' element={<Aircon ongetindex={ongetindex}></Aircon>}></Route>
         <Route path='/owen' element={<Owen ongetindex={ongetindex}></Owen>}></Route>
         <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
+        <Route path='/purchasehistory' element={<PurchaseHistory cart={cart}></PurchaseHistory>}></Route>
         </Route>
         <Route element={<Adminmainlayout/>}>
         <Route path='/admin' element={<Adminproductadd ></Adminproductadd>}></Route>

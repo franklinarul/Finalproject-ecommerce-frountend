@@ -6,34 +6,54 @@ import { FaAngleDown } from "react-icons/fa";
 import { useEffect } from "react";
 import HomeAppliances from "./Homeappliances";
 import axios from "axios";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase_config";
+import { useNavigate } from "react-router-dom";
 
-function Navbar({getdata,username}) {
+function Navbar({getdata,username,setcart,setlogintrue,setusername,logintrue,setgetdata,email}) {
 
  const[getdata1,setgetdata1] = useState([])
  const[total,settotal] = useState([0]) 
-useEffect(function(){
+ const navigate =useNavigate()
+ const[datalength,setdatalength]=useState(false)
+ const[counttotal,setcounttaotal]=useState()
+const[count,setcount]=useState()
+ useEffect(function(){
  setgetdata1(getdata)
- 
-},[getdata])
+ setcart(getdata)
 
-useEffect(()=>{
-    if(getdata1.length > 0){
-    const atotal = getdata1.reduce((sum,item)=> sum + Number(item.cprice),0)
+ },[getdata])
+
+ useEffect(()=>{
+    
+    if (getdata1.length > 0) {
+
+    const atotal = getdata1.reduce((sum, item) => {
+      const cleanPrice = item.amount||item.cprice
+        .toString()
+        .replace(/,/g, "")      
+        .replace(/[^0-9.]/g, ""); 
+
+      return sum + parseFloat(cleanPrice);
+    }, 0);
     settotal(atotal)
+    setdatalength(true)
+    }else{
+          setdatalength(false)
     }
-},[getdata1])
+ },[getdata1])
     
 
     const [click, setclick] = useState(false)
     const [cancel, setcancel] = useState(false)
     const [carttoggle,setcarttoggle] = useState(true)
     const[logintoggle,setlogintoggle] = useState(false)
-// mobile navclick funcanility********
+ // mobile navclick funcanility********
     function clickmenu() {
         setclick(!click);
         console.log(click)
     }
-// mobile cancel funcanility*********
+ // mobile cancel funcanility*********
     function clickCancle() {
       setcancel(!cancel)
     }
@@ -43,10 +63,57 @@ useEffect(()=>{
     }
 
     async function handlebynow(){
-   const {data} = await  axios.post("https://finalproject-ecommerce-roj1.onrender.com/payment",{amount:total});
-   initpayment(data.data)
-    };
+        setcarttoggle(!carttoggle)
+        if(logintrue==true){
+         const {data} = await  axios.post("https://finalproject-ecommerce-roj1.onrender.com/payment",{amount:total});
+         initpayment(data.data)
+    }
+    else{
+        navigate("/signup")
+    }
+        }
 
+ function dicrementcart(id,_id) {
+   setgetdata1(prev =>
+    prev.map((item, index) => {
+      if (index === id) {
+       const price = Number(item.cprice?.replace(/,/g, ""));  // convert string → number
+      const currentcount = item.count||1
+        const newCount =  currentcount- 1;
+         axios.post("https://finalproject-ecommerce-roj1.onrender.com/updatecart",{count:newCount,id:_id})
+        return {
+          ...item,
+          count: item.count>1 ? newCount : 1,
+          amount: price * newCount
+        };
+      }
+      return item;
+    })
+  );
+
+ }
+
+ function increment(id,_id) {
+   setgetdata1(prev =>
+    prev.map((item, index) => {
+      if (index === id) {
+       const price = Number(item.cprice?.replace(/,/g, ""));  // convert string → number
+      const currentcount = item.count||1
+        const newCount =  currentcount+ 1;
+         axios.post("https://finalproject-ecommerce-roj1.onrender.com/updatecart",{count:newCount,id:_id})
+        return {
+          ...item,
+          count: newCount,
+          amount: price * newCount
+        };
+      }
+      return item;
+      
+    })
+  );
+  
+ }
+  
     function initpayment(data){
         const options = {
             key:"rzp_test_RRdJkC9EV7YKIh",
@@ -75,6 +142,19 @@ useEffect(()=>{
     function onchangelogintoggle(){
               setlogintoggle(!logintoggle)
     }
+    function logout(){
+        signOut(auth).then(()=>{
+            setlogintrue(false)
+            setlogintoggle(false)
+            setusername("Profile")
+            setgetdata([])
+        })
+    }
+    function popoutthecart(index){ 
+        const updatedata = getdata1.filter((item)=>item._id !== index)
+        setgetdata1(updatedata)
+        axios.delete(`http://localhost:5000/removedata/${index}`)
+    }
     return (
         <>
         <div className="relative">
@@ -86,10 +166,10 @@ useEffect(()=>{
                 </div>
                 <div className="flex gap-6">
                     <i onClick={carttoggled} className="text-3xl flex text-white cursor-pointer"><FaOpencart /><sup className="text-xl">{getdata1.length}</sup></i>
-                    <p onClick={onchangelogintoggle} className="text-xl font-semibold text-white cursor-pointer">Log In</p>
+                    <p onClick={onchangelogintoggle} className="text-xl font-semibold text-white cursor-pointer">Profile</p>
                 </div>
             </div>
-{/* **********************            *mobile navmenu contents          ************************************/}
+ {/* **********************            *mobile navmenu contents          ************************************/}
             <div style={{ display: click ? "block" : "none" }} className="block bg-red w-full">
                 <div className="list-none p-3 flex flex-col gap-5">
                     <div className="flex justify-between">
@@ -143,7 +223,7 @@ useEffect(()=>{
                 </div>
                  <div className="h-[65%] overflow-x-auto overflow-y-auto ">
                 <div className="grid grid-cols-5 mt-5 gap-5 lg:gap-2 items-center">
-                    {getdata1.map((item)=>{
+                    {getdata1.map((item,index)=>{
                         return(
                             <>
                                  <div>
@@ -155,17 +235,17 @@ useEffect(()=>{
                         <h1>{item.name}</h1>
                         </div>
                         <div>
-                            <h1 className="mx-3 px-1 border-[1px] cursor-pointer">x</h1>
+                            <h1 onClick={()=>{popoutthecart(item._id)}} className="mx-3 px-1 border-[1px] cursor-pointer">x</h1>
                         </div>
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex">
-                                <h1 className="px-4 py-2 border-[1px]">-</h1>
-                                <h1 className="px-4 py-2 border-[1px]">1</h1>
-                                <h1 className="px-4 py-2 border-[1px]">+</h1>
+                                <h1 onClick={()=>{dicrementcart(index,item._id)}}  className="px-4 py-2 border-[1px] cursor-pointer">-</h1>
+                                <h1 className="px-4 py-2 border-[1px]">{item.count||1}</h1>
+                                <h1 onClick={()=>{increment(index,item._id)}} className="px-4 py-2 border-[1px] cursor-pointer">+</h1>
                             </div>
                             <div>
-                                <p>{item.cprice}</p>
+                                <p>{item.amount||Number(item.cprice?.replace(/,/g, ""))*(item.count||1)}</p>
                             </div>
                         </div>
                     </div>
@@ -180,9 +260,12 @@ useEffect(()=>{
                 <h1> Subtotal:</h1>
                 <h1>{total}</h1>
                 </div>
-                <div className="px-2 flex flex-col gap-5 pt-5">
-                    <button className="w-full border-[2px] p-2 bg-black text-white text-lg"> Viewcart</button>
+                <div style={{display: datalength ? "block":"none"}}  className="px-2 flex flex-col gap-5 pt-5">
+                    <Link to={"/purchasehistory"}> <button className="w-full border-[2px] p-2 bg-black text-white text-lg"> Viewcart</button></Link>
                     <button onClick={handlebynow} className="w-full border-[2px] p-2 bg-black text-white text-lg">Buy</button>
+                </div>
+                <div style={{display: datalength ? "none":"block"}}  className="px-2 flex flex-col gap-5 pt-5">
+                    <Link to={"/allproducts"}> <button onClick={carttoggled} className="w-full border-[2px] p-2 bg-black text-white text-lg">ContinueShop</button></Link>
                 </div>
                 </div>
               
@@ -195,7 +278,7 @@ useEffect(()=>{
                         <div className="h-16 w-16 bg-gray-400 rounded-full relative flex justify-center items-center">
                          <h1 className="text-2xl font-bold">{username[0]}</h1>
                         </div>
-                        <h1 className="text-[20px] font-bold">{username}</h1>
+                        <h1  className="text-[20px] font-bold">{username}</h1>
                     </div>
                    <div>
                     <p onClick={onchangelogintoggle} className="font-bold cursor-pointer">x</p>
@@ -204,10 +287,10 @@ useEffect(()=>{
                 <div>
                     <div className="flex flex-col justify-between m-3 gap-3">
                        
-                           <Link><p>Cart</p></Link> 
-                          <Link><p>Purchase History</p> </Link>  
-                          <Link to={"/login"} onClick={onchangelogintoggle}><p>Login</p></Link>  
+                           <Link to={"/purchasehistory"} onClick={onchangelogintoggle}><p>Cart</p></Link> 
+                          <Link><p>Purchase History</p> </Link>   
                           <Link to={"/signup"} onClick={onchangelogintoggle}><p>signup</p></Link>
+                          <Link  onClick={logout}><p>Logout</p></Link> 
                         
                     </div>
                 </div>

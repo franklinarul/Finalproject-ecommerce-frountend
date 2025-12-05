@@ -3,20 +3,24 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../firebase_config";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 function SignUp(){
+    const[username,setusername]=useState()
     const [email,setemail]=useState()
     const [pass,setpass]=useState()
     const navigate =useNavigate()
 
-    function onlogin(){
+    function onlogin(){ 
+      axios.post("https://finalproject-ecommerce-roj1.onrender.com/signinuser",{email:email,username:username})
       createUserWithEmailAndPassword(auth,email,pass).then(()=>{
-        alert("sussefully logined")
+        alert("sussefully signup")
         navigate('/login')
       }).catch((err)=>{
         alert(err)
       })
+      
     }
     return(
         <div className="grid mx-3 lg:mx-60 grid-cols-2  justify-center items-center h-[100vh] ">
@@ -32,6 +36,9 @@ function SignUp(){
                 <div>
                     <h1 className="text-2xl pb-2 text-center font-bold">Signup</h1>
                 </div>
+            <div>
+                <input onChange={(e)=>{setusername(e.target.value)}} className="w-[100%] border-[1px]   p-2 rounded-md" type="text" name="" id="" placeholder="User Name"/>
+            </div>
               <div>
                 <input  onChange={(e)=>{setemail(e.target.value)}} className="w-[100%] border-[1px]  p-2 rounded-md" type="email" name="" id="" placeholder="Emailid" />
             </div>
