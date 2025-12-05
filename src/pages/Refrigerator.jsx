@@ -44,11 +44,11 @@ function Refigerator({ongetindex}) {
                 <div className="px-3 lg:order-first lg:text-center lg:border-r-2">
                     <h1 className="text-[24px] lg:text-[30px] font-bold">Categories</h1>
                     <div className="p-4 flex flex-col gap-3 lg:text-lg lg:items-center ">
-                        <p>Home appliances</p>
-                        <p>Audio & video</p>
-                        <p>Refrigerator</p>
-                        <p>Air conditioner</p>
-                        <p>Kitchen appliances</p>
+                        <Link to={"/homeappliences"}><p>Home appliances</p></Link>
+                                        <Link to={"/Audio&Vedio"}><p>Audio & video</p></Link>
+                                        <Link to={"/Refrigirator"}><p>Refrigerator</p></Link>
+                                        <Link to={"/Airconditioner"}><p>Air conditioner</p></Link>
+                                        <Link to={"/Airconditioner"}><p>Kitchen appliances</p></Link>
                     </div>
                 </div>
                 </div>
