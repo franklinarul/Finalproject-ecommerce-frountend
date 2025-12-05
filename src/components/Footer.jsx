@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -12,13 +13,15 @@ function Footer() {
                 <p>We bring you the latest in <br></br> electronics, gadgets, and smart <br></br> home solutions—all in one place.</p>
             </div>
             <div >
-                <h1 className="pb-5 text-2xl font-semibold">Shop</h1>
+                <h1 className="pb-5 text-2xl font-semibold">Quick Links</h1>
 
-                <p>Hot deals</p>
-                <p>Categories</p>
-                <p>Brands</p>
-                <p>Rebates</p>
-                <p>Weekly deals</p>
+                <Link to={"/homeappliences"}><p>Home appliances</p></Link>
+                <Link to={"/Audio&Vedio"}><p>Audio & video</p></Link>
+                <Link to={"/Refrigirator"}><p>Refrigerator</p></Link>
+                <Link to={"/Airconditioner"}><p>Air conditioner</p></Link>
+                <Link to={"/Airconditioner"}><p>Kitchen appliances</p></Link>
+                
+
             </div>
 
             <div>
