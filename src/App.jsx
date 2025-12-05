@@ -158,7 +158,7 @@ useEffect(function(){
         <Route path='/Audio&Vedio' element={<AudioVedioPage ongetindex={ongetindex}></AudioVedioPage>}></Route>
         <Route path='/Refrigirator' element={<Refigerator ongetindex={ongetindex}></Refigerator>}></Route>
         <Route path='/Airconditioner' element={<Airconditioner ongetindex={ongetindex}></Airconditioner>}></Route>
-        <Route path='cc' element={<Kitchenappliance ongetindex={ongetindex}></Kitchenappliance>}></Route>
+        <Route path='/Kitchenappliances' element={<Kitchenappliance ongetindex={ongetindex}></Kitchenappliance>}></Route>
         <Route path='compact-pulsator' element={<CompactPulsator ongetindex={ongetindex} ></CompactPulsator>}></Route>
         <Route path='/trimmer' element={<Trimmer ongetindex={ongetindex} ></Trimmer>}> </Route>
         <Route path='/soundbar' element={<TheaterSoundbar ongetindex={ongetindex} ></TheaterSoundbar>}> </Route>
